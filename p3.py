@@ -31,7 +31,7 @@ def problem3(input):
 
     def bfs(x, y, size):
         visited = [[False] * N for _ in range(N)]
-        queue = deque([(x, y, 0)])  # (x, y, 이동 시간)
+        queue = deque([(x, y, 0)])
         visited[x][y] = True
         possible_targets = []
 
@@ -48,26 +48,23 @@ def problem3(input):
 
         if possible_targets:
             possible_targets.sort()
-            return possible_targets[0]  # (거리, x, y)
+            return possible_targets[0] 
         return None
 
     while True:
         target = bfs(bear_x, bear_y, bear_size)
         if not target:
-            break  # 먹을 수 있는 벌집이 없으면 종료
+            break 
 
         dist, tx, ty = target
         time += dist
         bear_x, bear_y = tx, ty
         honeycomb_count += 1
-        forest[tx][ty] = 0  # 벌집을 먹고 빈칸으로 변경
+        forest[tx][ty] = 0
 
-        # 곰의 크기를 증가시킬지 확인
         if honeycomb_count == bear_size:
             bear_size += 1
             honeycomb_count = 0
-
-    #여기에서부터 코드를 작성하세요.
 
     return time
 
